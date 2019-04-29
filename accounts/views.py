@@ -53,7 +53,13 @@ def login(request):
 
 
 def logout(request):
-    return redirect(request, 'accounts/index.html')
+    if request.method == "POST":
+        auth.logout(request)
+        messages.success(request, 'You are now logged out')
+        print('a')
+        return redirect('index')
+    else:
+        print('b')
 
 
 def dashboard(request):
